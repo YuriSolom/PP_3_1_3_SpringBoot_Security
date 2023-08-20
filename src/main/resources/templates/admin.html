@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details</title>
+    <style>
+        .styled-button {
+            background-color: #1a52d5; /* Цвет фона */
+            border: none; /* Убрать границу */
+            color: white; /* Цвет текста */
+            padding: 10px 20px; /* Внутренний отступ */
+            text-align: center; /* Выравнивание текста по центру */
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px; /* Размер шрифта */
+            border-radius: 5px; /* Закругление углов */
+            cursor: pointer; /* Изменение курсора при наведении */
+            margin-left: auto;
+        }
+        .details {
+            display: flex;
+            flex-direction: column;
+            margin-left: 670px;
+            font-size: 20px;
+        }
+
+        .details p {
+            margin: 5px;
+        }
+
+        strong {
+            display: inline-block;
+            width: 140px;
+        }
+        .formLogout {
+            margin-left: 1300px;
+        }
+        .formShowUsersList {
+            margin-left: 670px;
+        }
+    </style>
+</head>
+<body>
+<h2 align="center">Admin</h2>
+<div class="formLogout">
+    <form th:action="@{/logout}" method="post">
+        <button class="styled-button" type="submit">Logout</button>
+    </form>
+</div>
+<div class="details">
+    <p><strong>First Name:</strong> <span th:text="${user.firstName}"></span></p>
+    <p><strong>Last Name:</strong> <span th:text="${user.lastName}"></span></p>
+    <p><strong>Age:</strong> <span th:text="${user.age}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+</div>
+<br>
+<div class="formShowUsersList">
+    <form th:action="@{/admin/users}">
+        <button type="submit">Show Users List</button>
+    </form>
+</div>
+</body>
+</html>
