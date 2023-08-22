@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User information-page</title>
+    <title>Users table</title>
     <style>
         .styled-button {
             background-color: #1a52d5; /* Цвет фона */
@@ -18,7 +18,6 @@
             cursor: pointer; /* Изменение курсора при наведении */
             margin: auto;
         }
-
         table {
             width: 600px;
             border-collapse: collapse;
@@ -28,6 +27,10 @@
         td {
             text-align: center;
         }
+
+        .addButton {
+            margin-left: 492px;
+        }
     </style>
 </head>
 <body>
@@ -36,7 +39,7 @@
         <button class="styled-button" type="submit">Logout</button>
     </form>
 </div>
-<h2 align="center"> About user</h2>
+<h2 align="center"> User List</h2>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -45,8 +48,10 @@
         <th>Age</th>
         <th>Email</th>
         <th>Role</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
-    <tr>
+    <tr th:each="user : ${allUsers}">
         <td th:utext="${user.id}"></td>
         <td th:utext="${user.firstName}"></td>
         <td th:utext="${user.lastName}"></td>
@@ -58,8 +63,23 @@
                  <span th:if="${!iterStat.last}"> </span>
             </span>
         </td>
+        <td>
+            <button th:onclick="'window.location.href = \'' +
+             @{/admin/edit_user(userId=${user.id})} + '\''">Edit
+            </button>
+        </td>
+        <td>
+            <button th:onclick="'window.location.href = \'' +
+             @{/admin/pre-delete_user(userId=${user.id})} + '\''">Delete
+            </button>
+        </td>
     </tr>
 </table>
 <br>
+<tr>
+    <form th:action="@{/admin/add_new_user}" class="addButton">
+        <button type="submit">Add New User</button>
+    </form>
+</tr>
 </body>
 </html>

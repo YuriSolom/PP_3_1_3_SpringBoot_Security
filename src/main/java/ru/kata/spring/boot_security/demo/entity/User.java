@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -141,11 +142,19 @@ public class User implements UserDetails {
 
     public void setRoles(Role role) {
         if (this.roles == null) {
-            this.roles = new ArrayList<>();
+            this.roles = new HashSet<>();
         }
         this.roles.add(role);
     }
 
+    public void setRoles(Collection<Role> roles) {
+        if (this.roles == null) {
+            this.roles = new HashSet<>();
+        }
+        for (Role role : roles) {
+            this.roles.add(role);
+        }
+    }
 
     @Override
     public String toString() {

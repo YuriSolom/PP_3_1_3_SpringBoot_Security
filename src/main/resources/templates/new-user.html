@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+    <style>
+        form {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        label, input {
+            margin-right: 10px;
+        }
+
+        .age-input {
+            display: flex;
+            align-items: center;
+            margin-left: -92px;
+        }
+
+        #age {
+            width: 30px;
+        }
+
+        .email-input {
+            display: flex;
+            align-items: center;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+<h2 align="center">New User</h2>
+<form th:action="@{/admin/save_user}" method="post" th:object="${user}">
+    <input type="hidden" th:field="*{id}">
+    <div class="input-group">
+        <label for="firstName">First name:</label>
+        <input type="text" id="firstName" th:field="*{firstName}"><br>
+    </div>
+    <div class="input-group">
+        <label for="lastName">Last name:</label>
+        <input type="text" id="lastName" th:field="*{lastName}"><br>
+    </div>
+    <div class="input-group">
+        <div class="age-input">
+            <label for="age">Age:</label>
+            <input type="number" id="age" th:field="*{age}"><br>
+        </div>
+    </div>
+    <div class="input-group">
+        <div class="email-input">
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}"><br>
+        </div>
+    </div>
+    <div class="input-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" th:field="*{username}"><br>
+    </div>
+    <div class="input-group">
+        <label for="password">Password:</label>
+        <input type="text" id="password" th:field="*{password}"><br>
+    </div>
+    <div class="input-group">
+        <label for="roles">Roles:</label>
+        <select id="roles" name="selectedRoles" multiple>
+            <option th:each="role : ${allRoles}" th:value="${role.name}" th:text="${role.name.replace('ROLE_','')}"></option>
+        </select>
+    </div>
+    <div class="input-group">
+        <button type="button" align="center" onclick="window.history.back();">Cancel</button>
+        <button type="submit" align="center">Add new user</button>
+    </div>
+</form>
+
+</body>
+</html>
