@@ -19,19 +19,19 @@ public class CreateUsersAndRoles {
 
     @PostConstruct
     public void run() {
-//        Role admin = new Role(1, "ROLE_ADMIN");
-//        Role user = new Role(2, "ROLE_USER");
-//        roleService.saveRole(admin);
-//        roleService.saveRole(user);
-//        User user1 = new User("James", "Bond", 90, "007@outlook.com"
-//                , "superAdmin", "$2a$10$bf5hvebgY5lbdIFb/Mx.ZO.z5c6.C0d4wEzLk2eQH3kbRI0.FtUWK");
-//        User user2 = new User("Vasiliy", "Terkin", 80, "terkin@gmail.com"
-//                , "simpleUser", "$2a$10$bf5hvebgY5lbdIFb/Mx.ZO.z5c6.C0d4wEzLk2eQH3kbRI0.FtUWK");
-//        user1.setRoles(admin);
-//        user1.setRoles(user);
-//        user2.setRoles(user);
-//        userService.addUser(user1);
-//        userService.addUser(user2);
+        Role admin = new Role(1, "ROLE_ADMIN");
+        Role user = new Role(2, "ROLE_USER");
+        roleService.saveRole(admin);
+        roleService.saveRole(user);
+        User user1 = new User("James", "Bond", 90, "007@outlook.com"
+                , "superAdmin", "$2a$10$bf5hvebgY5lbdIFb/Mx.ZO.z5c6.C0d4wEzLk2eQH3kbRI0.FtUWK");
+        User user2 = new User("Vasiliy", "Terkin", 80, "terkin@gmail.com"
+                , "simpleUser", "$2a$10$bf5hvebgY5lbdIFb/Mx.ZO.z5c6.C0d4wEzLk2eQH3kbRI0.FtUWK");
+        user1.setRoles(admin);
+        user1.setRoles(user);
+        user2.setRoles(user);
+        userService.addUser(user1);
+        userService.addUser(user2);
     }
 
 }

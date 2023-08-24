@@ -78,7 +78,7 @@
     </div>
     <div class="input-group">
         <label for="roles">Roles:</label>
-        <select id="roles" name="selectedRoles" multiple>
+        <select id="roles" name="selectedRoles" multiple required>
             <option th:each="role : ${allRoles}" th:value="${role.name}" th:text="${role.name.replace('ROLE_','')}"></option>
         </select>
     </div>
