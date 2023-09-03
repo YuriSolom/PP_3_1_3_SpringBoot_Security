@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class RoleService {
-    @Autowired
-    RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
+
+    public RoleService(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
+    }
+
     @Transactional(readOnly = true)
     public List<Role> getAllRoles() {
         return roleRepository.findAll();

@@ -1,6 +1,5 @@
 package ru.kata.spring.boot_security.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.kata.spring.boot_security.demo.entity.Role;
 import ru.kata.spring.boot_security.demo.entity.User;
@@ -11,11 +10,13 @@ import javax.annotation.PostConstruct;
 
 @Component
 public class CreateUsersAndRoles {
-    @Autowired
-    private RoleService roleService;
-    @Autowired
-    private UserService userService;
+    private final RoleService roleService;
+    private final UserService userService;
 
+    public CreateUsersAndRoles(RoleService roleService, UserService userService) {
+        this.roleService = roleService;
+        this.userService = userService;
+    }
 
     @PostConstruct
     public void run() {

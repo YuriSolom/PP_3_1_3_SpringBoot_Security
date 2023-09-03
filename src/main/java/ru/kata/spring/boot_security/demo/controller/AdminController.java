@@ -1,6 +1,5 @@
 package ru.kata.spring.boot_security.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +14,15 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private RoleService roleService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserService userService;
+    private final RoleService roleService;
+    private final PasswordEncoder passwordEncoder;
+
+    public AdminController(UserService userService, RoleService roleService, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.roleService = roleService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @GetMapping("/users")
     public String showUsers(Model model) {
@@ -51,7 +53,10 @@ public class AdminController {
         if(selectedRoles != null) {
             user.setRoles(selectedRoles.stream().map(role -> roleService.findByName(role)).collect(Collectors.toSet()));
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        User user1 = userService.getUser(user.getId());
+        if(!user1.getPassword().equals(user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         if (user.getId() != 0) {
             userService.updateUser(user);
         } else {
