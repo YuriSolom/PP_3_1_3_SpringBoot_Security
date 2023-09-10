@@ -54,12 +54,14 @@ public class AdminController {
             user.setRoles(selectedRoles.stream().map(role -> roleService.findByName(role)).collect(Collectors.toSet()));
         }
         User user1 = userService.getUser(user.getId());
-        if(!user1.getPassword().equals(user.getPassword())) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
-        if (user.getId() != 0) {
+        if(user1 != null) {
+            if (!user.getPassword().equals(user1.getPassword())) {
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+            }
             userService.updateUser(user);
-        } else {
+        }
+         else {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             userService.addUser(user);
         }
         return "redirect:/admin/users";

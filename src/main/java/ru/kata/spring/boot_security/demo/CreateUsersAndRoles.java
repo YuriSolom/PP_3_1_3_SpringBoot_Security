@@ -28,9 +28,9 @@ public class CreateUsersAndRoles {
                 , "superAdmin", "$2a$10$bf5hvebgY5lbdIFb/Mx.ZO.z5c6.C0d4wEzLk2eQH3kbRI0.FtUWK");
         User user2 = new User("Vasiliy", "Terkin", 80, "terkin@gmail.com"
                 , "simpleUser", "$2a$10$bf5hvebgY5lbdIFb/Mx.ZO.z5c6.C0d4wEzLk2eQH3kbRI0.FtUWK");
-        user1.setRoles(admin);
-        user1.setRoles(user);
-        user2.setRoles(user);
+        user1.setRole(admin);
+        user1.setRole(user);
+        user2.setRole(user);
         userService.addUser(user1);
         userService.addUser(user2);
     }
